@@ -21,6 +21,7 @@ require (
 	contrib.go.opencensus.io/exporter/prometheus v0.4.0
 	github.com/AdaLogics/go-fuzz-headers v0.0.0-20210929163055-e81b3f25be97
 	github.com/Masterminds/sprig/v3 v3.2.2
+	github.com/aeraki-mesh/meta-protocol-control-plane-api v1.0.6
 	github.com/aws/aws-sdk-go v1.41.7
 	github.com/cenkalti/backoff/v4 v4.1.1
 	github.com/census-instrumentation/opencensus-proto v0.3.0
