@@ -186,9 +186,9 @@ default: init build test
 
 .PHONY: init
 # Downloads envoy, based on the SHA defined in the base pilot Dockerfile
-init: $(TARGET_OUT)/istio_is_init
-	@mkdir -p ${TARGET_OUT}/logs
-	@mkdir -p ${TARGET_OUT}/release
+init: $(ISTIO_OUT)/istio_is_init $(ISTIO_OUT)/aeraki_is_init
+	mkdir -p ${TARGET_OUT}/logs
+	mkdir -p ${TARGET_OUT}/release
 
 # I tried to make this dependent on what I thought was the appropriate
 # lock file, but it caused the rule for that file to get run (which
@@ -199,6 +199,12 @@ $(TARGET_OUT)/istio_is_init: bin/init.sh istio.deps | $(TARGET_OUT)
 	TARGET_OUT=$(TARGET_OUT) ISTIO_BIN=$(ISTIO_BIN) GOOS_LOCAL=$(GOOS_LOCAL) bin/retry.sh SSL_ERROR_SYSCALL bin/init.sh
 	touch $(TARGET_OUT)/istio_is_init
 
+# replace envoy with aeraki envoy built with meta protocol proxy
+$(ISTIO_OUT)/aeraki_is_init: bin/aeraki-init.sh aeraki.deps | $(ISTIO_OUT)
+	ISTIO_OUT=$(ISTIO_OUT) ISTIO_BIN=$(ISTIO_BIN) GOOS_LOCAL=$(GOOS_LOCAL) bin/retry.sh SSL_ERROR_SYSCALL bin/aeraki-init.sh
+	touch $(ISTIO_OUT)/aeraki_is_init
+
+# init.sh downloads envoy and webassembly plugins
 # init.sh downloads envoy and webassembly plugins
 ${TARGET_OUT}/${SIDECAR}: init
 ${ISTIO_ENVOY_LINUX_DEBUG_PATH}: init

@@ -346,4 +346,8 @@ import (
 	_ "istio.io/api/envoy/config/filter/http/authn/v2alpha1"
 	_ "istio.io/api/envoy/config/filter/http/jwt_auth/v2alpha1"
 	_ "istio.io/api/envoy/config/filter/network/tcp_cluster_rewrite/v2alpha1"
+
+	// MetaProtocol
+	_ "github.com/aeraki-mesh/meta-protocol-control-plane-api/meta_protocol_proxy/config/route/v1alpha"
+	_ "github.com/aeraki-mesh/meta-protocol-control-plane-api/meta_protocol_proxy/v1alpha"
 )
