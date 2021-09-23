@@ -364,4 +364,8 @@ import (
 	_ "istio.io/istio/pkg/envoy/config/filter/http/alpn/v2alpha1"
 	_ "istio.io/istio/pkg/envoy/config/filter/http/authn/v2alpha1"
 	_ "istio.io/istio/pkg/envoy/config/filter/network/tcp_cluster_rewrite/v2alpha1"
+
+	// MetaProtocol
+	_ "github.com/aeraki-framework/meta-protocol-control-plane-api/meta_protocol_proxy/config/route/v1alpha"
+	_ "github.com/aeraki-framework/meta-protocol-control-plane-api/meta_protocol_proxy/v1alpha"
 )

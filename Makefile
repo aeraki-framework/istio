@@ -66,6 +66,7 @@ include out/.env
 export
 
 export GOBIN ?= $(GOPATH)/bin
+include Makefile.aeraki.mk
 include Makefile.core.mk
 
 endif

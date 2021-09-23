@@ -18,7 +18,7 @@
 # test cases fail within Docker, and Mac + Docker isn't quite perfect.
 # For more information see: https://github.com/istio/istio/pull/19322/
 
-BUILD_WITH_CONTAINER ?= 1
+BUILD_WITH_CONTAINER ?= 0
 CONTAINER_OPTIONS = --mount type=bind,source=/tmp,destination=/tmp --net=host
 
 ifeq ($(BUILD_WITH_CONTAINER),1)
@@ -34,3 +34,5 @@ endif
 .PHONY: istioctl-install
 istioctl-install: istioctl-install-container
 	cp out/$(TARGET_OS)_$(TARGET_ARCH)/istioctl ${GOPATH}/bin
+
+DOCKER_BUILD_VARIANTS = distroless
