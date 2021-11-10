@@ -35,4 +35,4 @@ endif
 istioctl-install: istioctl-install-container
 	cp out/$(TARGET_OS)_$(TARGET_ARCH)/istioctl ${GOPATH}/bin
 
-DOCKER_BUILD_VARIANTS = distroless
+#DOCKER_BUILD_VARIANTS = distroless

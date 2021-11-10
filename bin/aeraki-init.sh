@@ -71,7 +71,7 @@ function download_envoy_if_necessary () {
     time ${DOWNLOAD_COMMAND} --header "${AUTH_HEADER:-}" "$1" | tar xz
 
     # Copy the extracted binary to the output location
-    cp bazel-bin/"${SIDECAR}" "$2"
+    cp "${SIDECAR}" "$2"
 
     # Remove the extracted binary.
     rm -rf usr
