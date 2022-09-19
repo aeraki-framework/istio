@@ -12,11 +12,17 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
-ifeq ($(AERAKI_ENVOY_VERSION),)
-  export AERAKI_ENVOY_VERSION:=$(shell cat aeraki.deps)
+ifeq (${AERAKI_ENVOY_VERSION},)
+  export AERAKI_ENVOY_VERSION:=${shell cat aeraki.deps}
 endif
 
-export AERAKI_ENVOY_RELEASE_URL = https://github.com/aeraki-framework/meta-protocol-proxy/releases/download/$(AERAKI_ENVOY_VERSION)/meta-protocol-proxy-$(AERAKI_ENVOY_VERSION).tar.gz
+ifeq (${AERAKI_ENVOY_DEBUG},"true")
+  export AERAKI_ENVOY_TAR_BALL=meta-protocol-proxy-debug-${AERAKI_ENVOY_VERSION}.tar.gz
+else
+  export AERAKI_ENVOY_TAR_BALL=meta-protocol-proxy-${AERAKI_ENVOY_VERSION}.tar.gz
+endif
+
+export AERAKI_ENVOY_RELEASE_URL = https://github.com/aeraki-framework/meta-protocol-proxy/releases/download/${AERAKI_ENVOY_VERSION}/${AERAKI_ENVOY_TAR_BALL}
 
 export ISTIO_ENVOY_LINUX_RELEASE_DIR = ${TARGET_OUT_LINUX}/release
 export AERAKI_ENVOY_LINUX_RELEASE_NAME = meta-protocol-proxy-${AERAKI_ENVOY_VERSION}

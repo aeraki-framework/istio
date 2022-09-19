@@ -92,12 +92,12 @@ echo AERAKI_ENVOY_LINUX_RELEASE_PATH : $AERAKI_ENVOY_LINUX_RELEASE_PATH
 # Download and extract the Envoy linux release binary.
 download_envoy_if_necessary "${AERAKI_ENVOY_RELEASE_URL}" "$AERAKI_ENVOY_LINUX_RELEASE_PATH" "${SIDECAR}"
 
-# Copy native envoy binary to ISTIO_OUT
-echo "Copying ${AERAKI_ENVOY_LINUX_RELEASE_PATH} to ${ISTIO_OUT}/${SIDECAR}"
-#cp -f "${AERAKI_ENVOY_LINUX_RELEASE_PATH}" "${ISTIO_OUT}/${SIDECAR}"
+# Copy native envoy binary to TARGET_OUT
+echo "Copying ${AERAKI_ENVOY_LINUX_RELEASE_PATH} to ${TARGET_OUT}/${SIDECAR}"
+#cp -f "${AERAKI_ENVOY_LINUX_RELEASE_PATH}" "${TARGET_OUT}/${SIDECAR}"
 
-# Copy the envoy binary to ISTIO_OUT_LINUX if the local OS is not Linux
+# Copy the envoy binary to TARGET_OUT_LINUX if the local OS is not Linux
 if [[ "$GOOS_LOCAL" != "linux" ]]; then
-   echo "Copying ${AERAKI_ENVOY_LINUX_RELEASE_PATH} to ${ISTIO_OUT_LINUX}/${SIDECAR}"
- # cp -f "${AERAKI_ENVOY_LINUX_RELEASE_PATH}" "${ISTIO_OUT_LINUX}/${SIDECAR}"
+   echo "Copying ${AERAKI_ENVOY_LINUX_RELEASE_PATH} to ${TARGET_OUT_LINUX}/${SIDECAR}"
+ # cp -f "${AERAKI_ENVOY_LINUX_RELEASE_PATH}" "${TARGET_OUT_LINUX}/${SIDECAR}"
 fi

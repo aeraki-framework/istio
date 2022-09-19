@@ -186,7 +186,7 @@ default: init build test
 
 .PHONY: init
 # Downloads envoy, based on the SHA defined in the base pilot Dockerfile
-init: $(ISTIO_OUT)/istio_is_init $(ISTIO_OUT)/aeraki_is_init
+init: $(TARGET_OUT)/istio_is_init $(TARGET_OUT)/aeraki_is_init
 	mkdir -p ${TARGET_OUT}/logs
 	mkdir -p ${TARGET_OUT}/release
 
@@ -200,9 +200,9 @@ $(TARGET_OUT)/istio_is_init: bin/init.sh istio.deps | $(TARGET_OUT)
 	touch $(TARGET_OUT)/istio_is_init
 
 # replace envoy with aeraki envoy built with meta protocol proxy
-$(ISTIO_OUT)/aeraki_is_init: bin/aeraki-init.sh aeraki.deps | $(ISTIO_OUT)
-	ISTIO_OUT=$(ISTIO_OUT) ISTIO_BIN=$(ISTIO_BIN) GOOS_LOCAL=$(GOOS_LOCAL) bin/retry.sh SSL_ERROR_SYSCALL bin/aeraki-init.sh
-	touch $(ISTIO_OUT)/aeraki_is_init
+$(TARGET_OUT)/aeraki_is_init: bin/aeraki-init.sh aeraki.deps | $(TARGET_OUT)
+	TARGET_OUT=$(TARGET_OUT) ISTIO_BIN=$(ISTIO_BIN) GOOS_LOCAL=$(GOOS_LOCAL) bin/retry.sh SSL_ERROR_SYSCALL bin/aeraki-init.sh
+	touch $(TARGET_OUT)/aeraki_is_init
 
 # init.sh downloads envoy and webassembly plugins
 # init.sh downloads envoy and webassembly plugins
