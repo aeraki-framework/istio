@@ -16,7 +16,7 @@ ifeq (${AERAKI_ENVOY_VERSION},)
   export AERAKI_ENVOY_VERSION:=${shell cat aeraki.deps}
 endif
 
-ifeq (${AERAKI_ENVOY_DEBUG},"true")
+ifeq ($(AERAKI_ENVOY_DEBUG),true)
   export AERAKI_ENVOY_TAR_BALL=meta-protocol-proxy-debug-${AERAKI_ENVOY_VERSION}.tar.gz
 else
   export AERAKI_ENVOY_TAR_BALL=meta-protocol-proxy-${AERAKI_ENVOY_VERSION}.tar.gz
