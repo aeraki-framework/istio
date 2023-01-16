@@ -12,6 +12,11 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
+export AERAKI_ENVOY_DEBUG=false
+#export AERAKI_ENVOY_DEBUG=true
+export DOCKER_BUILD_VARIANTS=default
+#export DOCKER_BUILD_VARIANTS=distroless
+
 ifeq (${AERAKI_ENVOY_VERSION},)
   export AERAKI_ENVOY_VERSION:=${shell cat aeraki.deps}
 endif
