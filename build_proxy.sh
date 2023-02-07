@@ -10,5 +10,10 @@ if [ "${AERAKI_ENVOY_DEBUG}" == "true" ]; then
 else
   export AERAKI_ENVOY_IMAGE=aeraki/meta-protocol-proxy:${AERAKI_ENVOY_VERSION}
 fi
-docker tag docker.io/aeraki/proxyv2:1.1.0 ${AERAKI_ENVOY_IMAGE}
-docker push ${AERAKI_ENVOY_IMAGE}
+if [ "${DOCKER_BUILD_VARIANTS}" == "distroless" ]; then
+  export AERAKI_ENVOY_IMAGE=aeraki/meta-protocol-proxy-distroless:${AERAKI_ENVOY_VERSION}
+  docker tag docker.io/aeraki/proxyv2:1.1.0-distroless ${AERAKI_ENVOY_IMAGE}
+else
+  docker tag docker.io/aeraki/proxyv2:1.1.0 ${AERAKI_ENVOY_IMAGE}
+fi
+  docker push ${AERAKI_ENVOY_IMAGE}
